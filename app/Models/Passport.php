@@ -19,5 +19,5 @@ class Passport extends Model
         return $this->belongsTo(User::class);  // Pasport foydalanuvchiga tegishli
     }
 
-    
+         
 }

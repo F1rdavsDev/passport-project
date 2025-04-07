@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    // qani relation qani
+    public function passport(){
+        return $this->hasOne(Passport::class);
+    }
 }
