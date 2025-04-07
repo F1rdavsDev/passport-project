@@ -17,7 +17,12 @@ class PassportController extends Controller
     
     public function index()
     {
-             $passport = Auth::user()->passports; 
+             $passport = Auth::user()->passport; 
+        // dd($passport);
+        // boldimi shumi
+
+        //ha boldi 
+
 
         return view("passport_crud.index",compact("passport"));
     }
@@ -37,13 +42,13 @@ class PassportController extends Controller
      */
     public function store(PassportCreateRequest $request)
     {
-        Passport::create([
+        $passport = Passport::create([
             'passport_number' => $request->passport_number,
             'issue_date' => $request->issue_date,
             'expiry_date' => $request->expiry_date,
             'user_id' => Auth::id(), 
         ]);
-    
+        // dd($passport,Auth::user());
         return redirect()->route('passport.index');
     }
     
@@ -52,9 +57,14 @@ class PassportController extends Controller
      */
     public function show(string $id)
     {
-        $passport = Auth::user()->passport; 
+        // $passport = Auth::user()->passport  ; 
 
-        return view('passport_crud.passport', compact('passport'));
+        // return view('passport_crud.passport', compact('passport'));
+       
+
+    $passport = Passport::where('user_id', auth()->id())->findOrFail($id);
+    return view('passport_crud.passport', compact('passport'));
+
     }
 
     /**

@@ -72,7 +72,9 @@ class UserController extends Controller
          $request->session()->invalidate(); 
          $request->session()->regenerateToken(); 
      
-         return redirect()->route('users.index'); 
+         return redirect()->route('users.index');
+         
+         
      }
      
 
