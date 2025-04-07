@@ -28,4 +28,4 @@ class PassportUpdateRequest extends FormRequest
             'expiry_date' => 'required|date',
         ];
     }
-}
+}  

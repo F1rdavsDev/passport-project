@@ -29,4 +29,4 @@ class UserRegisterRequest extends FormRequest
             'password' => 'required|string|min:8|confirmed',             
         ];
     }
-}   
+}      
