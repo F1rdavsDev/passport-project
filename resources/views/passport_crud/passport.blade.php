@@ -20,7 +20,7 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
                         <i class="fas fa-trash"></i> O‘chirish
-                    </button>
+                    </button>   
                 </form>
             </div>
         </div>

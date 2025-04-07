@@ -1,6 +1,6 @@
 @extends('layouts.passport')
-@section('content')
 @section('title', 'Home')
+@section('content')
 <div class="container mt-5">
         <h1 class="mb-4">Xush kelibsiz!</h1>
         <p>Passport ma'lumotlaringizni kiritish yoki ko'rish uchun quyidagi tugmalardan foydalaning:</p>
