@@ -21,7 +21,9 @@ class AuthMiddleware
 
         if (!Auth::check()) {
             return redirect()->route('users.index'); 
+
         }
+        
 
         
         return $next($request);

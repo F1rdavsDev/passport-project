@@ -16,7 +16,8 @@ class CheckPassportMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() || Auth::user()->passport) {
+        // dd(Auth::user());
+        if (Auth::check() && Auth::user()->passport) {
             return redirect()->route('passport.index')->withErrors('Siz allaqachon passport yaratgansiz.');
         }
         return $next($request);

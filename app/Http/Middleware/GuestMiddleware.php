@@ -20,6 +20,8 @@ class GuestMiddleware
         if (Auth::check()) {
             return redirect()->route('passport.index'); 
         }
+  
+
 
         
         return $next($request);
