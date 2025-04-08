@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PassportUpdateRequest;
 use App\Models\Passport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PassportStoreRequest;
 use App\Http\Requests\PassportCreateRequest;
+use App\Http\Requests\PassportUpdateRequest;
 
 class PassportController extends Controller
 {
@@ -40,7 +41,7 @@ class PassportController extends Controller
      * 
      * Store a newly created resource in storage.
      */
-    public function store(PassportCreateRequest $request)
+    public function store(PassportStoreRequest $request)
     {
         $passport = Passport::create([
             'passport_number' => $request->passport_number,
@@ -49,7 +50,7 @@ class PassportController extends Controller
             'user_id' => Auth::id(), 
         ]);
         // dd($passport,Auth::user());
-        return redirect()->route('passport.index');
+        return redirect()->route('passport.index' , compact('passport'));
     }
     
     /**
@@ -106,14 +107,25 @@ class PassportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Passport $passport)
+//     public function destroy(Passport $passport , string $id)
+// {
+//     // $passport = Passport::where('user_id', auth()->id())->findOrFail($id);
+//     // if (Auth::id() !== $passport->user_id) {
+//     //     return redirect()->route('passport.index');
+//     // }
+
+//     // $passport->delete();
+
+//     // return redirect()->route('passport.index');
+// }
+public function destroy(string $id)
 {
-
-
+    $passport = Passport::where('user_id', auth()->id())->findOrFail($id);
     $passport->delete();
 
     return redirect()->route('passport.index');
 }
+
 
     
 }
