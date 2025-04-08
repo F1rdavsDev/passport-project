@@ -24,7 +24,7 @@ class PassportController extends Controller
         //ha boldi 
 
 
-        return view("passport_crud.index",compact("passport"));
+        return view("passport.index",compact("passport"));
     }
 
     /**
@@ -32,7 +32,7 @@ class PassportController extends Controller
      */
     public function create()
     {
-     return view('passport_crud.create');   
+     return view('passport.create');   
     }
 
     /**
@@ -63,7 +63,7 @@ class PassportController extends Controller
        
 
     $passport = Passport::where('user_id', auth()->id())->findOrFail($id);
-    return view('passport_crud.passport', compact('passport'));
+    return view('passport.passport', compact('passport'));
 
     }
 
@@ -78,7 +78,7 @@ class PassportController extends Controller
         return redirect()->route('passport.index');
     }
 
-    return view('passport_crud.edit', compact('passport'));
+    return view('passport.edit', compact('passport'));
     }
 
     /**
@@ -88,6 +88,10 @@ class PassportController extends Controller
     {
 
         $passport = Passport::findOrFail($id);  
+
+    if (Auth::id() !== $passport->user_id) {
+        return redirect()->route('passport.index');
+    }
 
     $passport->update([
         'passport_number' => $request->passport_number,
